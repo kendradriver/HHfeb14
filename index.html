@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>For Hannah 💖</title>
+  <style>
+    :root{
+      --pink:#ff2d55;
+      --rose:#ff4d88;
+      --ink:rgba(0,0,0,.82);
+      --muted:rgba(0,0,0,.62);
+      --card:rgba(255,255,255,.78);
+      --stroke:rgba(255,105,180,.24);
+      --shadow: 0 18px 60px rgba(255, 45, 85, 0.18);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      background:
+        radial-gradient(circle at top, #ffe6ef, #fff 46%, #ffeef6);
+      color:var(--ink);
+      overflow:hidden;
+    }
+    .card{
+      width:min(860px, calc(100% - 2rem));
+      background:var(--card);
+      backdrop-filter: blur(10px);
+      border:1px solid var(--stroke);
+      border-radius:26px;
+      box-shadow: var(--shadow);
+      padding: clamp(18px, 3vw, 34px);
+      position:relative;
+    }
+    .top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:12px;
+      flex-wrap:wrap;
+    }
+    .badge{
+      font-size:13px;
+      padding:8px 10px;
+      border-radius:999px;
+      background: rgba(255,45,85,.10);
+      border:1px solid rgba(255,45,85,.18);
+      user-select:none;
+      white-space:nowrap;
+      color: rgba(0,0,0,.72);
+    }
+    h1{
+      margin:10px 0 6px;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height:1.05;
+      letter-spacing:-0.02em;
+    }
+    p{
+      margin:0 0 16px;
+      font-size: clamp(15px, 1.6vw, 18px);
+      line-height:1.5;
+      color: var(--muted);
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:16px;
+      margin-top: 16px;
+    }
+    @media (max-width: 820px){
+      .grid{grid-template-columns:1fr}
+    }
+    .panel{
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: 18px;
+      padding: 16px;
+    }
+    .panel h2{
+      margin:0 0 10px;
+      font-size: 18px;
+      letter-spacing:-0.01em;
+    }
+    .subtle{
+      color: rgba(0,0,0,.55);
+      font-size: 13px;
+      margin-top: 6px;
+    }
+    .buttons{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top: 10px;
+      position:relative;
+      min-height:64px;
+    }
+    .btn{
+      padding:14px 18px;
+      border-radius:16px;
+      border:0;
+      cursor:pointer;
+      font-weight:800;
+      letter-spacing:.01em;
+      transition: transform .08s ease, box-shadow .2s ease, filter .2s ease;
+      user-select:none;
+      touch-action: manipulation;
+    }
+    .btn:active{ transform: translateY(1px) scale(0.99); }
+    .yes{
+      background: linear-gradient(135deg, var(--rose), var(--pink));
+      color:white;
+      box-shadow: 0 16px 35px rgba(255,45,85,.25);
+    }
+    .yes:hover{ filter:brightness(1.03); }
+    .no{
+      background: rgba(0,0,0,.06);
+      color: rgba(0,0,0,.78);
+      border: 1px solid rgba(0,0,0,.08);
+      position:relative;
+    }
+    .note{
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,45,85,.10);
+      border: 1px solid rgba(255,45,85,.16);
+      display:none;
+      font-size:16px;
+    }
+    .note strong{ color: var(--pink); }
+    .hearts{
+      position:absolute;
+      inset:-36px -36px auto auto;
+      pointer-events:none;
+      opacity:.85;
+      font-size: 20px;
+      transform: rotate(10deg);
+    }
+    /* Agenda styling */
+    .agenda{
+      display:grid;
+      gap:12px;
+    }
+    .day{
+      border:1px solid rgba(0,0,0,.08);
+      border-radius: 16px;
+      padding: 12px 12px;
+      background: rgba(255,255,255,.75);
+    }
+    .dayTitle{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:6px;
+      font-weight:800;
+    }
+    .pill{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      background: rgba(255,45,85,.10);
+      border:1px solid rgba(255,45,85,.16);
+      color: rgba(0,0,0,.72);
+      white-space:nowrap;
+    }
+    ul{
+      margin: 8px 0 0 18px;
+      color: rgba(0,0,0,.72);
+      line-height:1.5;
+    }
+    li{ margin: 4px 0; }
+    /* Password-ish gate */
+    .gateWrap{
+      display:grid;
+      place-items:center;
+      min-height: calc(100vh - 2rem);
+      width:100%;
+      padding: 2rem 1rem;
+    }
+    .gate{
+      width:min(520px, 100%);
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: 26px;
+      box-shadow: var(--shadow);
+      padding: 22px;
+      position:relative;
+      text-align:center;
+    }
+    .gate h1{
+      font-size: clamp(24px, 4vw, 34px);
+      margin: 6px 0 6px;
+    }
+    .gate p{ margin-bottom: 14px; }
+    .row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-top: 8px;
+    }
+    input{
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,.12);
+      outline:none;
+      font-size: 15px;
+      background: rgba(255,255,255,.9);
+      min-width: 240px;
+    }
+    .tiny{
+      margin-top: 10px;
+      font-size: 12.5px;
+      color: rgba(0,0,0,.48);
+    }
+    .err{
+      display:none;
+      margin-top: 10px;
+      font-size: 13px;
+      color: rgba(255,45,85,.95);
+      font-weight: 700;
+    }
+
+    /* floating heart confetti */
+    .float{
+      position: fixed;
+      left: 50%;
+      top: 70%;
+      font-size: 18px;
+      pointer-events: none;
+      animation: rise 1.6s ease forwards;
+      filter: drop-shadow(0 8px 10px rgba(0,0,0,0.12));
+    }
+    @keyframes rise{
+      0%{ transform: translate(-50%, 0) scale(0.9); opacity:0; }
+      12%{ opacity:1; }
+      100%{ transform: translate(calc(-50% + var(--dx)), calc(-220px - var(--dy))) scale(1.25); opacity:0; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Password-ish Gate -->
+  <div class="gateWrap" id="gateWrap">
+    <div class="gate" role="dialog" aria-label="Enter passcode to continue">
+      <div class="hearts">🔐 💗 💞</div>
+      <div class="top" style="justify-content:center; margin-bottom:6px;">
+        <div class="badge" id="dateBadge"></div>
+      </div>
+      <h1>Hi Hannah 💖</h1>
+      <p>
+        This page is <em>password-ish</em> (very official, very secure, definitely hacker-proof).
+        <br/>Enter the passcode to continue.
+      </p>
+      <div class="row">
+        <input id="pass" type="password" placeholder="Passcode" autocomplete="off" />
+        <button class="btn yes" id="enterBtn" type="button">Unlock 💌</button>
+      </div>
+      <div class="err" id="err">Nope 😅 Try again (hint: she looks like a litte fox. Foxy like her momma.).</div>
+      <div class="tiny">P.S. If you’re Hannah, you’re allowed to be here.</div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="card" id="content" style="display:none;" role="main" aria-label="Valentine card">
+    <div class="hearts">💗 💞 💘</div>
+
+    <div class="top">
+      <div class="badge" id="badge">From Kendra</div>
+      <div class="badge" id="dateBadge2"></div>
+    </div>
+
+    <h1 id="headline">Hannah… will you be my Valentine?</h1>
+    <p id="subhead">
+      I was going to play it cool… but then I remembered I’m dating <strong>you</strong>. 💌
+    </p>
+
+    <div class="grid">
+      <div class="panel">
+        <h2>💘 The Big Question</h2>
+        <p>
+          Hannah, you make my world feel softer, safer, and way more fun.
+          So I have a very important question…
+        </p>
+
+        <div class="buttons" id="btnArea">
+          <button class="btn yes" id="yesBtn" type="button">Yes 💖</button>
+          <button class="btn no" id="noBtn" type="button" aria-label="No (it might move)">No 😅</button>
+        </div>
+
+        <div class="note" id="note">
+          <div style="font-size:18px; margin-bottom:6px;">🎉🎉🎉🎉</div>
+          <div id="noteText">
+            Can’t wait for our weekend. 💘
+          </div>
+        </div>
+
+        <div class="subtle">*Plz don't hit "No".</div>
+      </div>
+
+      <div class="panel">
+        <h2>📅 Valentine’s Weekend Agenda</h2>
+        <p>Proposed! Any additions, changes, thoughts are appreciated.</p>
+
+        <div class="agenda">
+          <div class="day">
+            <div class="dayTitle">
+              <span>Saturday</span>
+              <span class="pill">6:15pm dinner</span>
+            </div>
+            <ul>
+              <li><strong>Dinner:</strong> Mussel &amp; Burger Bar at <strong>6:15pm</strong></li>
+              <li><strong>After:</strong> 1-on-1 Unrivaled Games watch party</li>
+			  <li><strong>Sweet Treat:</strong> Ice Cream </li>
+            </ul>
+          </div>
+
+          <div class="day">
+            <div class="dayTitle">
+              <span>Sunday</span>
+              <span class="pill">cozy mode</span>
+            </div>
+            <ul>
+              <li><strong>Breakfast:</strong> complete with heart-shaped eggs 🍳❤️</li>
+              <li><strong>Coffee walk:</strong> if it’s not raining ☕️🚶‍♀️</li>
+              <li><strong>Mandatory:</strong> lots of kisses and holding hands 💋🤝</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="subtle">Contingency plan if it rains: coffee + cuddles + movie/documentary + “we tried.” ✅</div>
+      </div>
+    </div>
+
+    <div class="top" style="margin-top: 18px;">
+      <div class="badge" id="tiny">P.S. You look really cute reading this.</div>
+    </div>
+  </div>
+
+  <script>
+    // Date badges
+    const now = new Date();
+    const dateStr = now.toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" });
+    document.getElementById("dateBadge").textContent = dateStr;
+    document.getElementById("dateBadge2").textContent = dateStr;
+
+    // Password-ish gate
+    const PASSCODE = "ginger"; // requested
+    const gateWrap = document.getElementById("gateWrap");
+    const content = document.getElementById("content");
+    const pass = document.getElementById("pass");
+    const enterBtn = document.getElementById("enterBtn");
+    const err = document.getElementById("err");
+
+    function unlock() {
+      const val = (pass.value || "").trim().toLowerCase();
+      if (val === PASSCODE) {
+        gateWrap.style.display = "none";
+        content.style.display = "block";
+        err.style.display = "none";
+        confettiHearts(14);
+      } else {
+        err.style.display = "block";
+        confettiHearts(4);
+        pass.focus();
+        pass.select();
+      }
+    }
+    enterBtn.addEventListener("click", unlock);
+    pass.addEventListener("keydown", (e) => { if (e.key === "Enter") unlock(); });
+
+    // Main interactions
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const btnArea = document.getElementById("btnArea");
+    const note = document.getElementById("note");
+
+    function confettiHearts(count = 18) {
+      const hearts = ["💗","💖","💘","💞","❤️"];
+      for (let i = 0; i < count; i++) {
+        const el = document.createElement("div");
+        el.className = "float";
+        el.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+        el.style.setProperty("--dx", (Math.random() * 260 - 130).toFixed(0) + "px");
+        el.style.setProperty("--dy", (Math.random() * 80).toFixed(0) + "px");
+        el.style.left = (50 + (Math.random() * 18 - 9)).toFixed(2) + "%";
+        el.style.top = (72 + (Math.random() * 6 - 3)).toFixed(2) + "%";
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 1700);
+      }
+    }
+
+    yesBtn.addEventListener("click", () => {
+      note.style.display = "block";
+      confettiHearts(26);
+
+      // disable the escape artist
+      noBtn.disabled = true;
+      noBtn.style.opacity = 0.5;
+      noBtn.style.cursor = "not-allowed";
+      yesBtn.textContent = "YAY 💖";
+    });
+
+    // Playful “No” that avoids clicks
+    function moveNoButton() {
+      const rect = btnArea.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
+
+      const padding = 8;
+      const maxX = rect.width - btnRect.width - padding;
+
+      const areaHeight = Math.max(rect.height, 90);
+      btnArea.style.minHeight = areaHeight + "px";
+
+      const x = Math.max(padding, Math.random() * maxX);
+      const y = Math.max(padding, Math.random() * (areaHeight - btnRect.height - padding));
+
+      noBtn.style.position = "absolute";
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    }
+
+    noBtn.addEventListener("mouseenter", () => { if (!noBtn.disabled) moveNoButton(); });
+    noBtn.addEventListener("touchstart", (e) => {
+      if (noBtn.disabled) return;
+      e.preventDefault();
+      moveNoButton();
+    }, { passive: false });
+    noBtn.addEventListener("click", () => { if (!noBtn.disabled) moveNoButton(); });
+  </script>
+</body>
+</html>
